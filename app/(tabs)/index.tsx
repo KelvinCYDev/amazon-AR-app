@@ -1,11 +1,18 @@
+import { HomeCarousel } from "@/components/Screens/home/HomeCarousel";
+import { HomeSuggestions } from "@/components/Screens/home/HomeSuggestions";
+import DefaultButton from "@/components/Shared/DefaultButton";
+import { DeliveryLocation } from "@/components/Shared/DeliveryLocation";
 import { HeaderTabsProps } from "@/components/Shared/header/HeaderTabs";
 import { router, useNavigation } from "expo-router";
 import { useEffect } from "react";
 import { Alert } from "react-native";
-import { Button } from "tamagui";
+import { Text, ScrollView, YStack } from "tamagui";
 
 export default function Home() {
   const navigation = useNavigation();
+  let session = false;
+
+  const onClickAuth = () => router.push("/login");
 
   const tabs: HeaderTabsProps["tabs"] = [
     {
@@ -30,8 +37,22 @@ export default function Home() {
     });
   }, [navigation.setOptions]);
   return (
-    <Button bg={"$orange10Light"} onPress={() => router.push("/login")}>
-      Login
-    </Button>
+    <ScrollView f={1}>
+      <DeliveryLocation />
+      <HomeCarousel />
+      <HomeSuggestions />
+      <YStack bg={"white"} w="100%" p={20} gap={20}>
+        <Text als={"flex-start"} fos={20} fow={"bold"}>
+          {session ? "Deals for you" : "Sign in for your best experience"}
+        </Text>
+        {session ? (
+          {
+            /* list of deals */
+          }
+        ) : (
+          <DefaultButton onPress={onClickAuth}>Sign in Securely</DefaultButton>
+        )}
+      </YStack>
+    </ScrollView>
   );
 }
