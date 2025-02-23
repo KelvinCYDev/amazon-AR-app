@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
-import { XStack, YStack } from "tamagui";
+import { XStack, YStack, Text } from "tamagui";
 import MCIcon from "@expo/vector-icons/MaterialCommunityIcons";
+import { Header } from "@/components/Shared/header/Header";
 
 interface Tab {
   name: string;
@@ -35,6 +36,7 @@ export default function TabLayout() {
               borderTopColor: "lightgray",
             },
             // Todo: Custom header
+            header: (props) => <Header {...props} />,
             tabBarLabel: () => null,
             tabBarIcon: ({ focused }) => (
               <YStack f={1} mt={-5} gap={10} jc={"space-between"} ai={"center"}>
@@ -51,6 +53,20 @@ export default function TabLayout() {
                   color={focused ? "#238db0" : "black"}
                 />
                 {/* Todo: Items.length in the cart */}
+                {tab.name === "cart" && (
+                  <Text
+                    px={4}
+                    br={10}
+                    pos="absolute"
+                    top={11}
+                    bg={"white"}
+                    fow={"bold"}
+                    fos={12}
+                    color={focused ? "#238db0" : "black"}
+                  >
+                    0
+                  </Text>
+                )}
               </YStack>
             ),
           }}
