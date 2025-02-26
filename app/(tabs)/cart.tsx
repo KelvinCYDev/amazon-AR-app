@@ -1,13 +1,14 @@
 import DefaultButton from "@/components/Shared/DefaultButton";
 import { DeliveryLocation } from "@/components/Shared/DeliveryLocation";
 import { HeaderTabsProps } from "@/components/Shared/header/HeaderTabs";
+import { useAuth } from "@/context/AuthProvider";
 import { router, useNavigation } from "expo-router";
 import { useEffect } from "react";
 import { Alert } from "react-native";
 import { Image, ScrollView, Text, YStack } from "tamagui";
 
 export default function Profile() {
-  const session = false;
+  const { session } = useAuth();
   const navigation = useNavigation();
   const onClickAuth = () => router.push("/login");
   const tabs: HeaderTabsProps["tabs"] = [

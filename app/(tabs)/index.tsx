@@ -3,6 +3,7 @@ import { HomeSuggestions } from "@/components/Screens/home/HomeSuggestions";
 import DefaultButton from "@/components/Shared/DefaultButton";
 import { DeliveryLocation } from "@/components/Shared/DeliveryLocation";
 import { HeaderTabsProps } from "@/components/Shared/header/HeaderTabs";
+import { useAuth } from "@/context/AuthProvider";
 import { router, useNavigation } from "expo-router";
 import { useEffect } from "react";
 import { Alert } from "react-native";
@@ -10,8 +11,7 @@ import { Text, ScrollView, YStack } from "tamagui";
 
 export default function Home() {
   const navigation = useNavigation();
-  let session = false;
-
+  const { session } = useAuth();
   const onClickAuth = () => router.push("/login");
 
   const tabs: HeaderTabsProps["tabs"] = [
@@ -46,9 +46,7 @@ export default function Home() {
           {session ? "Deals for you" : "Sign in for your best experience"}
         </Text>
         {session ? (
-          {
-            /* list of deals */
-          }
+          <></>
         ) : (
           <DefaultButton onPress={onClickAuth}>Sign in Securely</DefaultButton>
         )}

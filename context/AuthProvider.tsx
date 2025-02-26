@@ -13,6 +13,7 @@ import { AppState } from "react-native";
 SplashScreen.preventAutoHideAsync();
 
 const AuthContext = createContext({ session: null as Session | null });
+export const useAuth = () => useContext(AuthContext);
 
 //if the app is in the foreground or background
 AppState.addEventListener("change", (state) => {
