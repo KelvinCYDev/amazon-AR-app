@@ -19,6 +19,7 @@
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
+    "@reactvision/react-viro": "^2.42.0",
     "@supabase/supabase-js": "^2.49.1",
     "@tamagui/babel-plugin": "^1.125.9",
     "@tamagui/config": "^1.125.9",
@@ -47,7 +48,8 @@
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5",
     "react-native-worklets-core": "^1.5.0",
-    "tamagui": "^1.125.9"
+    "tamagui": "^1.125.9",
+    "expo-dev-client": "~5.0.12"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

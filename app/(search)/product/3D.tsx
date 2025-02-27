@@ -61,7 +61,7 @@ function Scene({ modelUrl }: { modelUrl: string }) {
   );
 }
 
-export default function ProductARScreen() {
+export default function Product3DScreen() {
   const { modelUrl } = useLocalSearchParams<{ modelUrl: string }>();
 
   return (
