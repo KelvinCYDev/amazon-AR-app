@@ -2,6 +2,7 @@ import { Tabs } from "expo-router";
 import { XStack, YStack, Text } from "tamagui";
 import MCIcon from "@expo/vector-icons/MaterialCommunityIcons";
 import { Header } from "@/components/Shared/header/Header";
+import { useCart } from "@/context/CartProvider";
 
 interface Tab {
   name: string;
@@ -9,6 +10,7 @@ interface Tab {
 }
 
 export default function TabLayout() {
+  const { items } = useCart();
   const tabs: Tab[] = [
     {
       name: "index",
@@ -64,7 +66,7 @@ export default function TabLayout() {
                     fos={12}
                     color={focused ? "#238db0" : "black"}
                   >
-                    0
+                    {items.length}
                   </Text>
                 )}
               </YStack>

@@ -18,9 +18,11 @@ import MCIcon from "@expo/vector-icons/MaterialCommunityIcons";
 import { deliveryDate } from "@/utils/date";
 import DefaultButton from "@/components/Shared/DefaultButton";
 import { FlatList } from "react-native";
+import { useCart } from "@/context/CartProvider";
 
 export default function ProductScreen() {
   const { id } = useLocalSearchParams();
+  const { addItem } = useCart();
   const [product, setProduct] = useState<Product | null>(null);
   const [selectOpen, setSelectOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -123,7 +125,9 @@ export default function ProductScreen() {
             <Text mr={"auto"}>Quantity: {quantity}</Text>
             <MCIcon name="chevron-down" size={20} />
           </Button>
-          <DefaultButton onPress={() => {}}>Add to basket</DefaultButton>
+          <DefaultButton onPress={() => addItem(product, quantity)}>
+            Add to basket
+          </DefaultButton>
           <DefaultButton bg="$orange9Light" onPress={() => {}}>
             Buy Now
           </DefaultButton>

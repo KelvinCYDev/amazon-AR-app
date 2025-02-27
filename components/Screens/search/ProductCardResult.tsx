@@ -5,6 +5,7 @@ import { Image, XStack, YStack, Text } from "tamagui";
 import PRIME from "@/assets/prime-label.png";
 import DefaultButton from "@/components/Shared/DefaultButton";
 import { deliveryDate } from "@/utils/date";
+import { useCart } from "@/context/CartProvider";
 
 interface Props {
   product: Product;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export default function ProductCardResult({ product, onPress }: Props) {
+  const { addItem } = useCart();
   return (
     <Pressable onPress={onPress}>
       <XStack h={280} bc={"$gray5Light"} br={6} bw={1}>
@@ -44,7 +46,7 @@ export default function ProductCardResult({ product, onPress }: Props) {
             mt={"auto"}
             h={40}
             textProps={{ fos: 14 }}
-            onPress={() => {}}
+            onPress={() => addItem(product)}
           >
             Add to cart
           </DefaultButton>
