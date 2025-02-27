@@ -12,6 +12,7 @@ export default function RootLayout() {
         <StatusBar style="auto" />
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="(search)" />
           <Stack.Screen
             name="login"
             options={{

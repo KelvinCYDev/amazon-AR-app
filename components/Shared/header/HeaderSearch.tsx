@@ -3,6 +3,7 @@ import Icon from "@expo/vector-icons/Ionicons";
 import { router, useSegments } from "expo-router";
 import { useRef, useState } from "react";
 import { Pressable } from "react-native";
+import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 
 export function HeaderSearch() {
   const segments = useSegments();
@@ -10,7 +11,7 @@ export function HeaderSearch() {
   const [query, setQuery] = useState("");
 
   const onPressIn = () => {
-    // router.push("/(search)");
+    router.push("/(search)");
   };
 
   const onGoBack = () => {
@@ -18,13 +19,25 @@ export function HeaderSearch() {
     router.dismissAll();
   };
 
+  // Use debounce to avoid instant fetching during typing
+  useDebouncedCallback(
+    () => {
+      if (query) router.setParams({ query });
+      if (segments.length === 1 && segments[0] === "(search)") {
+        ref.current?.focus();
+      }
+    },
+    [query],
+    500
+  );
+
   return (
-    <XStack px={20} jc={"center"} ai={"center"}>
-      {/* {segments[0] === "(search)" && (
+    <XStack px={20} jc={"center"} ai={"center"} gap={10}>
+      {segments[0] === "(search)" && (
         <Pressable onPress={onGoBack}>
           <Icon name="arrow-back" color={"black"} size={24} />
         </Pressable>
-      )} */}
+      )}
       <XStack
         bg={"white"}
         f={9}
@@ -44,7 +57,7 @@ export function HeaderSearch() {
           value={query}
           onPressIn={onPressIn}
           onChangeText={setQuery}
-          // readOnly={segments[0] !== "(search)"}
+          readOnly={segments[0] !== "(search)"}
           w={"75%"}
           bg={"white"}
           fow={800}
